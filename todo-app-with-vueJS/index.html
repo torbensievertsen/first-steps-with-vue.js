@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header__title">Todo App</h1>
+    </header>
+    <div id="app" class="main">
+        <form class="todo-input" action=""><input class="todo-input__input" type="text" name="" id=""
+                placeholder="Get sh*t done!" v-model="newTodo" @submit.prevent>
+            <button class="button" @click.prevent="addTodo()">Add</button>
+        </form>
+        <h2>Filter & Options</h2>
+        <ul class="filter-and-options">
+            <li @change="filter='all'" class="radio-container"><input class="radio-button" type="radio" name="filter"
+                    id="all" checked>All</li>
+            <li @change="filter='open'" class="radio-container"><input class="radio-button" type="radio" name="filter"
+                    id="open">Open</li>
+            <li @change="filter='done'" class="radio-container"><input class="radio-button" type="radio" name="filter"
+                    id="done">Done</li>
+        </ul>
+        <button class="button" @click="removeDoneTodos">Remove Done Todos</button>
+        <h2>Your Todos</h2>
+        <ul id="todos" class="todo-list">
+            <li class="todo-item " v-for="todo in filterArray" :key="todo.id" @change="changeCheckbox(todo)" :class="{
+                    'done':todo.done,
+                    'open': !todo.done,}">
+                <p class="todo-item__text">{{todo.description }}</p> <input class="todo-item__checkbox" type="checkbox"
+                    v-model="todo.done">
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
