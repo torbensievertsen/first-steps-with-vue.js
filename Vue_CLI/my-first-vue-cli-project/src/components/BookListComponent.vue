@@ -6,24 +6,29 @@
         <tr>
           <th class="table-item__table-head-name">Name</th>
           <th class="table-item__table-head--isbn">ISBN</th>
+          <th class="th.table-item__table-head--actions">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr
+        <BookListRow
           v-for="book in books"
           :key="book.isbn"
-          class="table-item__table-row"
-        >
-          <td>{{ book.title }}</td>
-          <td>{{ book.isbn }}</td>
-        </tr>
+          :title="book.title"
+          :isbn="book.isbn"
+          class=".table-item__table-row"
+        />
       </tbody>
     </table>
   </section>
 </template>
 
 <script>
+import BookListRow from "@/components/BookListRow.vue";
+
 export default {
+  components: {
+    BookListRow,
+  },
   data() {
     return {
       books: [
@@ -82,25 +87,13 @@ export default {
 .table-item__table-head-actions {
   width: 15%;
 }
-.table-item__table-row button {
-  opacity: 0;
-  padding: 5px;
-  transition: opacity 500ms;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.table-item__table-row:hover button {
-  opacity: 1;
+.table-item__table th {
+  padding: 12px 15px;
 }
 .table-item__table thead tr {
   background-color: var(--primary);
   color: #ffffff;
   text-align: left;
-}
-.table-item__table th,
-.table-item__table td {
-  padding: 12px 15px;
 }
 .table-item__table tbody tr {
   border-bottom: 1px solid #dddddd;
@@ -119,5 +112,13 @@ export default {
   margin-top: 1rem;
   padding-bottom: 0.4rem;
   border-bottom: 2px solid var(--primary-dark);
+}
+
+.table-item__table-row button {
+  opacity: 0;
+  padding: 5px;
+  transition: opacity 500ms;
+  cursor: pointer;
+  border-radius: 5px;
 }
 </style>
