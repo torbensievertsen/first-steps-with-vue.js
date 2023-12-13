@@ -2,7 +2,13 @@
   <tr class=".table-item__table td">
     <td>{{ title }}</td>
     <td>{{ isbn }}</td>
-    <td><BaseButton btntext="Add Bookmark" :variant="variant" /></td>
+    <td>
+      <BaseButton
+        :btntext="btntext"
+        :variant="variant"
+        @press="handleAddBookmark"
+      />
+    </td>
   </tr>
 </template>
 
@@ -19,8 +25,20 @@ export default {
   },
   data() {
     return {
+      btntext: "Add Bookmark",
       variant: true,
+      isBookmarked: false,
     };
+  },
+  methods: {
+    handleAddBookmark() {
+      this.isBookmarked = !this.isBookmarked;
+      if (this.btntext === "Add Bookmark") {
+        this.btntext = "Remove Bookmark";
+      } else {
+        this.btntext = "Add Bookmark";
+      }
+    },
   },
 };
 </script>

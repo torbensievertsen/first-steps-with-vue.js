@@ -6,6 +6,7 @@
       'btn--secondary': !variant,
     }"
     v-text="btntext"
+    @click="press"
   ></button>
 </template>
 
@@ -14,6 +15,11 @@ export default {
   props: {
     btntext: String,
     variant: Boolean,
+  },
+  methods: {
+    press() {
+      this.$emit("press");
+    },
   },
 };
 </script>
