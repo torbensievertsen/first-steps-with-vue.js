@@ -3,43 +3,29 @@
     <td>{{ title }}</td>
     <td>{{ isbn }}</td>
     <td>
-      <BaseButton
+      <slot
+        name="actionCol"
         :btntext="btntext"
         :variant="variant"
-        @press="handleAddBookmark"
+        :isbn="isbn"
       />
     </td>
   </tr>
 </template>
 
 <script>
-import BaseButton from "@/components/BaseButton.vue";
-
 export default {
   props: {
     title: String,
     isbn: String,
-  },
-  components: {
-    BaseButton,
+    btntext: String,
+    variant: Boolean,
+    isBookmarked: Boolean,
   },
   data() {
-    return {
-      btntext: "Add Bookmark",
-      variant: true,
-      isBookmarked: false,
-    };
+    return {};
   },
-  methods: {
-    handleAddBookmark() {
-      this.isBookmarked = !this.isBookmarked;
-      if (this.btntext === "Add Bookmark") {
-        this.btntext = "Remove Bookmark";
-      } else {
-        this.btntext = "Add Bookmark";
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 

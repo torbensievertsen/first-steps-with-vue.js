@@ -5,9 +5,10 @@
       'btn--primary': variant,
       'btn--secondary': !variant,
     }"
-    v-text="btntext"
     @click="press"
-  ></button>
+  >
+    <slot />{{ btntext }}
+  </button>
 </template>
 
 <script>
